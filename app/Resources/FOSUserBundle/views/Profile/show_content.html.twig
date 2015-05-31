@@ -1,0 +1,30 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="container" align="center">
+     <div id="content">
+         <div class="row">
+		<div class="col-sm-4">
+                    <div class='beta-about-person'>
+<h3 class="beta-active-tab">Qu'est ce que ce vous vouler faire? </h3>
+<ul>
+    <li><a href='{{ path('fos_user_profile_show') }}'>Mes informations</a></li>
+    <li><a href='{{ path('fos_user_profile_edit') }}'>Editer mes informations</a></li>
+    <li><a href='{{ path('fos_user_profile_edit') }}'>Editer mes informations</a></li>
+    <li><a href='{{ path('fos_user_change_password') }}'>Changer mon mot de passe</a></li>
+    <li><a href=''>Mes adresses</a></li>
+    <li><a href='{{ path('fos_user_security_logout') }}'>Deconexion</a></li>
+</ul>
+                    </div>
+                 </div>
+             <div class="col-sm-8">
+<div class="beta-author-social">
+    <h3 class="beta-active-tab">Mes Information personnel</h3>
+    <b>{{ 'profile.show.username'|trans }}:</b><p> {{ user.username }}</p>
+    <b>{{ 'profile.show.email'|trans }}:</b>  <p>{{ user.email }}</p>
+</div>
+             </div> 
+        </div>
+        
+       
+    </div>
+ </div>

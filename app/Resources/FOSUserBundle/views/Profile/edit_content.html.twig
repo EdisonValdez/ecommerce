@@ -1,0 +1,35 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<div class="container" align="center">
+     <div id="content">
+         <div class="row">
+		<div class="col-sm-4">
+            
+                </div>
+             <div class="col-sm-8" >
+  
+    <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="beta-form-checkout">
+       <div class="form-block">
+               <h3 class="beta-about-person">Edite votre profile</h3> <br />
+       </div>
+        <div class="form-block">
+         
+        {{ form_widget(form, {
+                    'attr': { 'class': 'beta-form' }
+                    }) }}   
+                    <br /><br />
+       </div>
+       
+        <div class="form-block">
+            <input  type="submit" class='btn btn-primary btn-lg' value="{{ 'profile.edit.submit'|trans }}" />
+        </div>
+        
+    </form>
+            </div> 
+        
+        </div> 
+        
+    </div>
+        
+ </div>

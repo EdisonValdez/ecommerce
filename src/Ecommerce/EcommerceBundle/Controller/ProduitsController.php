@@ -4,10 +4,15 @@ namespace Ecommerce\EcommerceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class ProduitsController extends Controller
 {
-    public function indexAction($name)
+    public function produitsAction()
     {
-        return $this->render('EcommerceBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('EcommerceBundle:Default:produits/layout/produits.html.twig');
+    }
+    
+    public function presentationAction()
+    {
+        return $this->render('EcommerceBundle:Default:produits/layout/presentation.html.twig');
     }
 }

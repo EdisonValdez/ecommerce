@@ -4,10 +4,20 @@ namespace Ecommerce\EcommerceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class PanierController extends Controller
 {
-    public function indexAction($name)
+    public function panierAction()
     {
-        return $this->render('EcommerceBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('EcommerceBundle:Default:panier/layout/panier.html.twig');
+    }
+    
+    public function livraisonAction()
+    {
+        return $this->render('EcommerceBundle:Default:panier/layout/livraison.html.twig');
+    }
+    
+    public function validationAction()
+    {
+        return $this->render('EcommerceBundle:Default:panier/layout/validation.html.twig');
     }
 }
