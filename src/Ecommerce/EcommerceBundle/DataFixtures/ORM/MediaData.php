@@ -52,8 +52,8 @@ class MediaData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($media7);
         
         $media8 = new Media();
-        $media8->setPath('http://estaticos02.marca.com/opinion/blogs/img/1289.jpg');
-        $media8->setAlt('something goes here');
+        $media8->setPath('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRjY72E9tQrocM_Q7etHoZCvJMydJfaiLTl7wq9pziS3vBCJbLj');
+        $media8->setAlt('Poivron');
         $manager->persist($media8);
         
         $manager->flush();

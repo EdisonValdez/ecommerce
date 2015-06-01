@@ -7,9 +7,8 @@
                 <div class="col-sm-9">
                     <div class="space50">&nbsp;</div>
                     <div class="beta-products-list">
-                        <h4>All Products in Store </h4>
+                        <h4>All Products in </h4>
                         <div class="space50">&nbsp;</div>
-                        {% if produit | length != 0 %}
                         <div class="row">
                             {% for produits in produit %}  
                                 
@@ -34,11 +33,6 @@
                             {% endfor %}
 
                         </div>
-                            {% else %}
-                                <div class="beta-promobox beta-promobox-b">
-                                    <center><h3 class="widget-title">Aucun Produit</h3></center>
-                                </div>
-                     {% endif %}
                     </div> <!-- .beta-products-list -->
                 </div>
                 <div class="col-sm-3 aside">
