@@ -21,7 +21,7 @@
                                         <div class="single-item-body">
                                             <p class="single-item-title">{{ produits.nom }}</p>
                                             <p class="single-item-price">
-                                                <span>${{ produits.prix }}</span>
+                                                <span>${{ produits.prix|tva(produits.tva.multiplicate)}}</span>
                                             </p>
                                         </div>
                                         <div class="single-item-caption">

@@ -14,7 +14,7 @@
                                 <h3>{{ produit.nom}}</h3>
                                 <p class="single-item-body">(<i>{{ produit.categorie.nom}}</i>)</p>
                                 <p class="single-item-price">
-                                    <span>${{ produit.prix}}</span>
+                                    <span>${{ produit.prix|tva(produit.tva.multiplicate)}}</span>
                                 </p>
                             </div>
 

@@ -10,13 +10,14 @@
      <div id="content">
          <div class="row">
 		<div class="col-sm-4">
-                    <h3 class="navbar">Nous Vous invites a vous a inscrire</h3>        
+                   <div class="form-block">
+                       <h3 class="navbar">Nous Vous invites a vous a inscrire</h3>        
                     
                     <br />
-                 <div class="form-block">
-                     <a href="{{ path('fos_user_registration_register') }}"> 
-                         <input type="submit" id="_submit" class="beta-btn primary" value="{{ 'registration.submit'|trans }}"  />
-                     </a>     
+                 
+                    <center>  <a href="{{ path('fos_user_registration_register') }}"> 
+                         <input type="submit" id="_submit" class="beta-btn primary btn-block" value="{{ 'registration.submit'|trans }}"  />
+                        </a>  </center>   
                  </div>  
                      
                     
@@ -31,13 +32,13 @@
         </div>
         <div class="form-block">
             <label for="password">{{ 'security.login.password'|trans }}</label>
-            <input style="width: 100%;border: 1px solid #E1E1E1;height: 37px;padding: 0px 12px;margin-bottom: 5px;width: 60%;overflow: hidden;" type="password" id="password" name="_password" required="required" />
+            <input  type="password" id="password" name="_password" required="required" />
         </div>
         
         <div class="form-block">
             <label for="remember_me">&nbsp;</label> 
           
-            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="beta-btn primary" />
+            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="beta-btn primary btn-block" />
         </div>
         </form>
          </div>
