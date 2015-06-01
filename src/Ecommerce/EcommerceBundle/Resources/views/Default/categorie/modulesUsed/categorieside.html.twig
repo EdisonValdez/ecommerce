@@ -1,0 +1,7 @@
+{% for categories in categorie %} 
+ 
+    <a href="{{ path('categorieProduits', { 'categorie' : categories.id }) }}"> {{ categories.nom }}</a>
+
+        {% endfor %}
+
+        <!-- brands widget -->

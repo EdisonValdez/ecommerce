@@ -1,5 +1,5 @@
 {% extends '::layout/layout.html.twig' %}
-
+     
 {% block body %}
     <div class="container">
         <div id="content">
@@ -42,6 +42,17 @@
                     </div> <!-- .beta-products-list -->
                 </div>
                 <div class="col-sm-3 aside">
+                    
+                    <div class="widget">
+                        <h3 class="widget-title">Categories</h3>
+                        <div class="widget-body">
+                            <div class="beta-tags">
+                                   
+                                {% render(controller('EcommerceBundle:Categorie:categorieside')) %}        
+			
+                            </div>
+                        </div>
+                    </div> <!-- tags cloud widget -->
                     <div class="widget">
                         <h3 class="widget-title">Best Sellers</h3>
                         <div class="widget-body">
@@ -100,22 +111,6 @@
                         </div>
                     </div> <!-- twitter feeds widget -->
 
-                    <div class="widget">
-                        <h3 class="widget-title">Tags</h3>
-                        <div class="widget-body">
-                            <div class="beta-tags">
-                                <a href="blog_with_2sidebars_type_e.html">Amazing</a>
-                                <a href="blog_with_2sidebars_type_e.html">Shop</a>
-                                <a href="blog_with_2sidebars_type_e.html">Themes</a>
-                                <a href="blog_with_2sidebars_type_e.html">Clean</a>
-                                <a href="blog_with_2sidebars_type_e.html">Responsiveness</a>
-                                <a href="blog_with_2sidebars_type_e.html">Multipurpose</a>
-                                <a href="blog_with_2sidebars_type_e.html">Creative</a>
-                                <a href="blog_with_2sidebars_type_e.html">Brands</a>
-                                <a href="blog_with_2sidebars_type_e.html">Categories</a>
-                            </div>
-                        </div>
-                    </div> <!-- tags cloud widget -->
                 </div>
             </div>
         </div> <!-- #content -->

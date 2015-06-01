@@ -22,6 +22,14 @@ class CategorieController extends Controller
         return $this->render('EcommerceBundle:Default:categorie/modulesUsed/menu.html.twig', array('categorie'=> $categorie));
     }
     
+    public function categoriesideAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $categorie = $em->getRepository('EcommerceBundle:Categories')->findAll();
+        
+        return $this->render('EcommerceBundle:Default:categorie/modulesUsed/categorieside.html.twig', array('categorie'=> $categorie));
+    }
+    
     
    
 }
