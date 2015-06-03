@@ -43,16 +43,14 @@
                                     <option value="L">L</option>
                                     <option value="XL">XL</option>
                                 </select>-->
-                                
-                                <select class="wc-select" name="color">
-                                    <option>Qty</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
+                             <form method="get" action="{{ path('ajouter', {'id' : produit.id }) }}">
+                                <select class="wc-select" name="qte">
+                                    {% for i in 1..12 %}
+                                   <option value="{{ i }}">{{ i }}</option>
+                                    {% endfor %}
                                 </select>
-                                <a class="add-to-cart" href="panier"><i class="fa fa-shopping-cart"></i></a>
+                                <a class="add-to-cart" href="{{ path('ajouter', {'id' : produit.id } ) }}"><i class="fa fa-shopping-cart"></i></a>
+                             </form>
                                 <div class="clearfix"></div>
                             </div>
                         </div>
