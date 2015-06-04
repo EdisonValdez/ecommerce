@@ -41,6 +41,20 @@
                      {% endif %}
                     </div> <!-- .beta-products-list -->
                 </div>
+                {% if app.user %}
+                <div class="col-sm-3 aside">
+                    <div class="widget">
+                         <h3 class="widget-title">Que faire</h3>
+                         <a href='{{ path('fos_user_profile_show') }}'>Mes informations</a><br>
+                             <a href='{{ path('fos_user_profile_edit') }}'>Editer mes informations</a><br>
+                             <a href='{{ path('fos_user_change_password') }}'>Changer mon mot de passe</a><br>
+                             <a href=''>Mes adresses</a><br>
+                             <a href='{{ path('fos_user_security_logout') }}'>Deconexion</a><br>
+
+                    </div>
+                </div>
+
+            {% endif %}
                 <div class="col-sm-3 aside">
                     
                     <div class="widget">
@@ -89,27 +103,7 @@
                         </div>
                     </div> <!-- best sellers widget -->
 
-                    <div class="widget">
-                        <h3 class="widget-title">Twitter Feeds</h3>
-                        <div class="widget-body">
-                            <div class="twitter-feed beta-lists">
-                                <div class="tweet">
-                                    <i class="fa fa-twitter"></i>
-                                    <div class="tweet-body">
-                                        <p><a href="#">@ShopaHolic</a> Proin feugiat mattis ante sed adipiscing velit sodales.</p>
-                                        <small class="tweet-time">25 Minutes ago</small>
-                                    </div>
-                                </div>
-                                <div class="tweet">
-                                    <i class="fa fa-twitter"></i>
-                                    <div class="tweet-body">
-                                        <p>Proin feugiat mattis ante sed adipiscing velit sodales. <a href="#">http://shopaholic.com</a></p>
-                                        <small class="tweet-time">25 Minutes ago</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- twitter feeds widget -->
+                     <!-- twitter feeds widget -->
 
                 </div>
             </div>

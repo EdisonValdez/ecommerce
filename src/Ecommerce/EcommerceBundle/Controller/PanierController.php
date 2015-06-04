@@ -4,6 +4,9 @@ namespace Ecommerce\EcommerceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponseResponse;
+use Ecommerce\EcommerceBundle\Entity\UtilizateurAdresses;
+use Ecommerce\EcommerceBundle\Form\UtilizateurAdressesType;
+
 
 class PanierController extends Controller
 {
@@ -53,9 +56,41 @@ class PanierController extends Controller
                                                                                                 'panier' => $session->get('panier')));
     }
     
+    public function adresseSuppresionAction($id)
+    {
+        $em = $this->getDoctrine ()->getManager();
+        $entity =  $em->getRepository('EcommerceBundle:UtilizateurAdresses')->find($id);
+        
+        if($this->container->get('security.context')->getToken()->getUser() != $entity->getUtilizateur() || !$entity)
+         return $this->redirect($this->generateUrl('livraison'));
+            $em->remove($entity);
+            $em->flush();
+            
+         return $this->redirect($this->generateUrl('livraison'));
+    }
+    
     public function livraisonAction()
     {
-        return $this->render('EcommerceBundle:Default:panier/layout/livraison.html.twig');
+        $utilizateur = $this->container->get('security.context')->getToken()->getUser();
+        $entity = new UtilizateurAdresses;
+        $form = $this->createForm(new UtilizateurAdressesType(), $entity);
+        
+        if($this->get('request')->getMethod() == 'POST')
+        {
+            $form->handleRequest($this->getRequest());
+             
+            if($form->isValid())
+                $em = $this->getDoctrine ()->getManager ();
+                $entity->setUtilizateur($utilizateur);
+                $em->persist($entity);
+                $em->flush();
+                
+                return $this->redirect($this->generateUrl('livraison'));
+        }
+        
+        
+        return $this->render('EcommerceBundle:Default:panier/layout/livraison.html.twig', array('utilizateur' => $utilizateur,
+                                                                                                'form' => $form->createView()));
     }
     
     public function validationAction()

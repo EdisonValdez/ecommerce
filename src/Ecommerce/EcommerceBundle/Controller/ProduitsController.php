@@ -4,39 +4,55 @@ namespace Ecommerce\EcommerceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ecommerce\EcommerceBundle\Form\RechercheType;
+use Ecommerce\EcommerceBundle\Entity\Categories;
 
 class ProduitsController extends Controller
 {
-    public function produitsAction()
+    /*public function categorieAction($categorie)
     {
         $em = $this->getDoctrine()->getManager();
-        $produit = $em->getRepository('EcommerceBundle:Produits')->findBy(array('disponible' => 1));
-       
         
-        return $this->render('EcommerceBundle:Default:produits/layout/produits.html.twig', 
-                array('produit'=> $produit));
+        $categorie = $em->getRepository('EcommerceBundle:Categories')->find($categorie);
+        if(!$categorie): return $this->render('PagesBundle:Default:pages/modulesUsed/404.html.twig'); endif;
+     
+        return $this->render('EcommerceBundle:Default:produits/layout/produits.html.twig', array('produit' => $produit));
+    }
+    */
+    public function produitsAction(Categories $categorie = null)
+    {   $session = $this->getRequest()->getSession();
+        $em = $this->getDoctrine()->getManager();
+        
+        if($categorie != null)
+           $produit = $em->getRepository('EcommerceBundle:Produits')->byCategorie($categorie);
+        else
+            $produit = $em->getRepository('EcommerceBundle:Produits')->findBy(array('disponible' => 1));
+       
+        if($session->has('panier'))
+            $panier = $session->get('panier');
+        else
+            $panier = false;
+        
+        return $this->render('EcommerceBundle:Default:produits/layout/produits.html.twig', array('produit'=> $produit,
+                                                                                                 'panier' => $panier));
     }
     
     public function presentationAction($id)
     {
+        $session = $this->getRequest()->getSession();
         $em = $this->getDoctrine()->getManager();
-        $produit = $em->getRepository('EcommerceBundle:Produits')
-                ->find($id);
+        $produit = $em->getRepository('EcommerceBundle:Produits')->find($id);
+        
         if(!$produit): return $this->render('PagesBundle:Default:pages/modulesUsed/404.html.twig'); endif;
      
-        return $this->render('EcommerceBundle:Default:produits/layout/presentation.html.twig', array('produit'=> $produit));
+        if($session->has('panier'))
+            $panier = $session->get('panier');
+        else
+            $panier = false;
+        
+        return $this->render('EcommerceBundle:Default:produits/layout/presentation.html.twig', array('produit'=> $produit,
+                                                                                                     'panier' => $panier));
     }
     
-    public function categorieAction($categorie)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $produit = $em->getRepository('EcommerceBundle:Produits')->byCategorie($categorie);
-        
-        $categorie = $em->getRepository('EcommerceBundle:Categories')->find($categorie);
-       
-        if(!$categorie): return $this->render('PagesBundle:Default:pages/modulesUsed/404.html.twig'); endif;
-        return $this->render('EcommerceBundle:Default:produits/layout/produits.html.twig', array('produit' => $produit));
-    }
     
     public function rechercheAction()
     {
