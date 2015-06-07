@@ -15,92 +15,89 @@
         <div class="clearfix"></div>
         <div class="space20">&nbsp;</div>
 
-        <div class="beta-message">
-            <i class="fa fa-ticket pull-left"></i>
+        <div class="beta-message"> <i class="fa fa-ticket pull-left"></i>
             <span class="pull-left beta-message-text">Have a coupon? Click here to enter your code</span>
             <div class="clearfix"></div>
         </div>
-        <div class="space30">&nbsp;</div>
-        <p class="beta-checkout-help">Returning customer? Login here</p>
+
+        <div class="space30">&nbsp;</div> <p class="beta-checkout-help">Returning customer? Login here</p>
         <div class="space50">&nbsp;</div>
 
-        <form action="#" method="post" class="beta-form-checkout">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h4>Adress de livraison</h4>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Adress de livraison</h4>
+                <div class="space20">&nbsp;</div>
+
+    <div class="">
+        {% if utilizateur.adresses |length != 0 %}
+            <form action="{{ path('validation') }}" method="post">
+
+                {% for adresse in utilizateur.adresses %}
+
+                    <label class="radio pull-left">
+                        <input type="radio" name="livraison" value="{{ adresse.id }}" {% if loop.index0 == 0 %} checked="checked" {% endif %} />
+                        {{ adresse.adresse }}, {{ adresse.cp }} - {{ adresse.ville}} 
+                        {{ adresse.pays }} | Telephone: {{ adresse.telephone }}
+
+                        {{ adresse.nom }} {{ adresse.prenom }}
+                    </label> 
+
+                    <a href="{{ path('livraisonAdresseSuppresion', {'id' : adresse.id }) }}"><i class="fa fa-trash-o pull-right"></i></a>
+                    {% endfor %} 
+                <br>
+                <br>
+
+            {% else %}
+                <h3>Vouz n'avez ajoute pas aucun adresse de livraison</h3> 
+            {% endif %}
+    </div>    
+    <br><br><br><br><br> <hr> <br><br><br><br>
+               
+                <h4>Adress de facturation</h4>
                 <div class="space20">&nbsp;</div>
 
                 <div class="">
                     {% if utilizateur.adresses |length != 0 %}
-                    <form action="{{ path('validation') }}" method="post">
-
                         {% for adresse in utilizateur.adresses %}
 
-                        <label class="radio pull-left">
-                            <input type="radio" name="livraison" id="optionsRadio1" 
-                                   value="{{ adresse.id }}" {% if loop.index0 ==0 %} checked="checked" {% endif %} />
-                            {{ adresse.adresse }}, {{ adresse.cp }} - {{ adresse.ville}} 
-                            {{ adresse.pays }} | Telephone: {{ adresse.telephone }}
-                            
-                            {{ adresse.nom }} {{ adresse.prenom }}
-                        </label> 
-                       
-                         <a href="{{ path('livraisonAdresseSuppression', {'id' : adresse.id }) }}"><i class="fa fa-trash-o pull-right"></i></a>
-                           {% endfor %} 
-                        <br>
-                        <br>
-                       
-                        {% else %}
-                             <h3>Vouz n'avez ajoute pas aucun adresse de livraison</h3> 
-                        {% endif %}
-                </div>    
-                <br><br><br><br><br> <hr> <br><br><br><br><br>
-               
-                     <h4>Adress de facturation</h4>
-                    <div class="space20">&nbsp;</div>
-
-                    <div class="">
-                        {% if utilizateur.adresses |length != 0 %}
-                           {% for adresse in utilizateur.adresses %}
-
                             <label class="radio pull-left">
-                                <input type="radio" name="facturation" id="optionsRadio1" 
-                                       value="{{ adresse.id }}" {% if loop.index0 ==0 %} checked="checked" {% endif %} />
+                                <input type="radio" name="facturation" value="{{ adresse.id }}" {% if loop.index0 ==0 %} checked="checked" {% endif %} />
                                 {{ adresse.adresse }}, {{ adresse.cp }} - {{ adresse.ville}} 
                                 {{ adresse.pays }} | Telephone: {{ adresse.telephone }}
-                               
+
                                 {{ adresse.nom }} {{ adresse.prenom }}
                             </label> 
                             <hr>
                             <br>
-                            <a href="{{ path('livraisonAdresseSuppression', {'id' : adresse.id }) }}"><i class="fa fa-trash-o pull-right"></i></a>
+                            <a href="{{ path('livraisonAdresseSuppresion', {'id' : adresse.id }) }}"><i class="fa fa-trash-o pull-right"></i></a>
                             {% endfor %}
-                            <br>
-                            <button class="btn btn-primary">Valider mon adresse de livraison</button>
+                        <br>
+                        <button class="btn btn-primary">Valider mon adresse de livraison</button>
                         </form>
-                            {% else %}
-                               <h3>Vouz n'avez ajoute pas aucun adresse de validation</h3>
-                            {% endif %}
-                    </div>  
-                </div>
-
-                <div class="col-sm-6">
-                     <h4>Ajouter une nouvelle adresse</h4>
-                   <div class="form-block">  
-                       <form action="{{ path('livraison') }}" method="post">
-                          {{ form_widget(form) }}
-                       <button class="btn btn-primary" type="submit">Ajouter</button>
-                     <div class="space30">&nbsp;</div>
-                      </form>
-                      <div class="space30">&nbsp;</div>
-                    </div>     
-
-               </div> 
+                    {% else %}
+                        <h3>Vouz n'avez ajoute pas aucun adresse de validation</h3>
+                    {% endif %}
+                </div>  
             </div>
 
+            <div class="col-sm-6">
+                <h4>Ajouter une nouvelle adresse</h4>
+                <div class="form-block">  
+                    <form action="{{ path('livraison') }}" method="post">
+                        {{ form_widget(form) }}
+                        <button class="btn btn-primary" type="submit">Ajouter</button>
+                        <div class="space30">&nbsp;</div>
+                    </form>
+                    <div class="space30">&nbsp;</div>
+                </div>     
+
+            </div> 
+        </div>
+
     </div> <!-- #content -->
-    </div> <!-- .container -->
-    <!--customjs-->
+</div> <!-- .container -->
+<!--customjs-->
     <script type="text/javascript">
         $(function() {
             // this will get the full URL at the address bar

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponseResponse;
 use Ecommerce\EcommerceBundle\Entity\UtilizateurAdresses;
 use Ecommerce\EcommerceBundle\Form\UtilizateurAdressesType;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
 class PanierController extends Controller
@@ -93,8 +94,36 @@ class PanierController extends Controller
                                                                                                 'form' => $form->createView()));
     }
     
+    public function setLivraisonOnSession()
+ {      
+        $session = $this->getRequest()->getSession();
+
+        if (!$session->has('adresse')) $session->set('adresse', array());
+        $adresse = $session->get('adresse');
+
+        if ($this->getRequest()->request->get('livraison') != null && $this->getRequest()->request->get('facturation') != null) {
+            $adresse['livraison'] = $this->getRequest()->request->get('livraison');
+            $adresse['facturation'] = $this->getRequest()->request->get('facturation');
+        } else {
+            return $this->redirect($this->generateUrl('validation'));
+        }
+
+        $session->set('adresse', $adresse);
+        return $this->redirect($this->generateUrl('validation'));
+    }
+
     public function validationAction()
     {
-        return $this->render('EcommerceBundle:Default:panier/layout/validation.html.twig');
+        if($this->get('request')->getMethod() == 'POST')
+            $this->setLivraisonOnSession();
+        
+        $em = $this->getDoctrine()->getManager();
+        $prepareCommande = $this->forward('EcommerceBundle:Commandes:prepareCommande');
+        $commande = $em->getRepository('EcommerceBundle:Commandes')->find($prepareCommande->getContent());       
+ 
+        
+        return $this->render('EcommerceBundle:Default:panier/layout/validation.html.twig', array('commande' => $commande));
+        
     }
+   
 }
