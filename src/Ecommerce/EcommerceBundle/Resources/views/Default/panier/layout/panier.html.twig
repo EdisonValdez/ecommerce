@@ -27,8 +27,8 @@
                                     <img class="pull-left" src="{{ produit.image.path }}" width="125" height="auto" alt="{{ produit.nom }}">
                                     <div class="media-body">
                                         <p class="font-large table-title">{{ produit.nom }}t</p>
-                                        <p class="table-option">Color: Red</p>
-                                        <p class="table-option">Size: M</p>
+                                        <!--<p class="table-option">Color: Red</p>
+                                        <p class="table-option">Size: M</p>-->
                                         <a class="table-edit" href="#">Edit</a>
                                     </div>
                                 </div>
@@ -71,14 +71,14 @@
                         <tr>
                             <td colspan="6" class="actions">
 
-                                <div class="coupon">
+                                <!--<div class="coupon">
                                     <label for="coupon_code">Coupon</label> 
                                     <input type="text" name="coupon_code" value="" placeholder="Coupon code"> 
                                     <button type="submit" class="beta-btn primary" name="apply_coupon">Apply Coupon <i class="fa fa-chevron-right"></i></button>
                                 </div>
 
-                                <button type="submit" class="beta-btn primary" name="update_cart">Update Cart <i class="fa fa-chevron-right"></i></button> 
-                                <button type="submit" class="beta-btn primary" name="{{ path('livraison') }}">Proceed to Checkout <i class="fa fa-chevron-right"></i></button>
+                                <button type="submit" class="beta-btn primary" name="update_cart">Update Cart <i class="fa fa-chevron-right"></i></button> -->
+                                <a href="livraison" ><button type="submit" class="beta-btn primary" name="livraison">Proceed to Checkout <i class="fa fa-chevron-right"></i></button></a>
                             </td>
                         </tr>
                     </tfoot>
@@ -112,12 +112,12 @@
                     </section>
                 </form>
 
-                <div class="cart-totals pull-right">
+               <!-- <div class="cart-totals pull-right">
                     <div class="cart-totals-row"><h5 class="cart-total-title">Cart Totals</h5></div>
                     <div class="cart-totals-row"><span>Cart Subtotal:</span> <span>$188.00</span></div>
                     <div class="cart-totals-row"><span>Shipping:</span> <span>Free Shipping</span></div>
                     <div class="cart-totals-row"><span>Order Total:</span> <span>$188.00</span></div>
-                </div>
+                </div>-->
 
                 <div class="clearfix"></div>
             </div>

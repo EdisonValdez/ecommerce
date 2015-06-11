@@ -3,8 +3,13 @@
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
             <trans-unit id="1">
-                <source>Symfony2 is great</source>
-                <target>J'aime Symfony2</target>
+                <source>Previous</source>
+                <target>Dale un chin pa' tras</target>
+            </trans-unit>
+            
+            <trans-unit id="2">
+                <source>Next</source>
+                <target>Dale ma Pa'lante</target>
             </trans-unit>
         </body>
     </file>

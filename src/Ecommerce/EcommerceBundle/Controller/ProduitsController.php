@@ -23,14 +23,18 @@ class ProduitsController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         if($categorie != null)
-           $produit = $em->getRepository('EcommerceBundle:Produits')->byCategorie($categorie);
+           $findProduit = $em->getRepository('EcommerceBundle:Produits')->byCategorie($categorie);
         else
-            $produit = $em->getRepository('EcommerceBundle:Produits')->findBy(array('disponible' => 1));
+            $findProduit = $em->getRepository('EcommerceBundle:Produits')->findBy(array('disponible' => 1));
        
         if($session->has('panier'))
             $panier = $session->get('panier');
         else
             $panier = false;
+        
+        $produit  = $this->get('knp_paginator')->paginate($findProduit,$this->get('request')->query->get('page', 1)/*page number*/,
+            3/*limit per page*/
+        );
         
         return $this->render('EcommerceBundle:Default:produits/layout/produits.html.twig', array('produit'=> $produit,
                                                                                                  'panier' => $panier));
